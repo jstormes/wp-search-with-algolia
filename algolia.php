@@ -6,10 +6,10 @@
  * Version:           1.6.0
  * Requires at least: 5.0
  * Requires PHP:      7.2
- * Author:            WebDevStudios
- * Author URI:        https://webdevstudios.com
+ * Author:            James W Stormes, WebDevStudios
+ * Author URI:        https://stormes.net
  * License:           GNU General Public License v2.0 / MIT License
- * Text Domain:       wp-search-with-algolia
+ * Text Domain:       dri-wp-search-with-algolia
  * Domain Path:       /languages
  *
  * @since   1.0.0
