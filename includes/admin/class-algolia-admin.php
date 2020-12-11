@@ -33,6 +33,7 @@ class Algolia_Admin {
 	 * @param Algolia_Plugin $plugin The Algolia Plugin.
 	 */
 	public function __construct( Algolia_Plugin $plugin ) {
+
 		$this->plugin = $plugin;
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );

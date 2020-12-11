@@ -403,8 +403,55 @@ abstract class Algolia_Index {
 
 			do_action( 'algolia_before_get_records', $item );
 			$item_records = $this->get_records( $item );
+
+			foreach($item_records as $itemkey=>$item_record) {
+
+			    $new_taxonomies=array();
+
+			    foreach($item_record['taxonomies'] as $key=>$value) {
+                    if ($key=='category') {
+                        $new_taxonomies['blog_tag']=$value;
+                    } else if ($key=='post_tag') {
+                        $new_taxonomies['product_tag']=$value;
+                    } else {
+                        $new_taxonomies[$key]=$value;
+                    }
+                }
+			    $item_records[$itemkey]['taxonomies'] = $new_taxonomies;
+
+                $new_taxonomies_hierarchical=array();
+                foreach($item_record['taxonomies_hierarchical'] as $key=>$value) {
+                    if ($key=='category') {
+                        $new_taxonomies_hierarchical['blog_tag']=$value;
+                    } else if ($key=='post_tag') {
+                        $new_taxonomies_hierarchical['product_tag']=$value;
+                    } else {
+                        $new_taxonomies_hierarchical[$key]=$value;
+                    }
+                }
+                $item_records[$itemkey]['taxonomies_hierarchical'] = $new_taxonomies_hierarchical;
+
+
+                $item_records[$itemkey]['Author']=$item_record['post_author'];
+
+                $t=get_site_url();
+
+                $item_records[$itemkey]['permalink']=str_replace(get_site_url(),'',$item_records[$itemkey]['permalink']);
+
+                foreach($item_records[$itemkey]['images'] as $imageNum=>$imageUrl) {
+                    $item_records[$itemkey]['images'][$imageNum]=(str_replace(get_site_url(),'',$item_records[$itemkey]['images'][$imageNum]));
+                }
+
+                unset($item_records[$itemkey]['post_author']);
+
+
+
+                $item_records[$itemkey]['post_date'] = gmdate("Ymd", $item_records[$itemkey]['post_date']);
+            }
+
 			$records      = array_merge( $records, $item_records );
 			do_action( 'algolia_after_get_records', $item );
+
 
 			$this->update_records( $item, $item_records );
 		}
