@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       WP Search with Algolia
- * Plugin URI:        https://github.com/WebDevStudios/wp-search-with-algolia
- * Description:       Integrate the powerful Algolia search service with WordPress
+ * Plugin Name:       Custom WP Search with Algolia
+ * Plugin URI:        https://github.com/jstormes/wp-search-with-algolia
+ * Description:       DRI Integrate the powerful Algolia search service with WordPress
  * Version:           1.6.0
  * Requires at least: 5.0
  * Requires PHP:      7.2
