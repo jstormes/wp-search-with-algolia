@@ -406,6 +406,7 @@ abstract class Algolia_Index {
 
 			foreach($item_records as $itemkey=>$item_record) {
 
+			    $products=array();
 			    $new_taxonomies=array();
 
 			    foreach($item_record['taxonomies'] as $key=>$value) {
@@ -413,11 +414,13 @@ abstract class Algolia_Index {
                         $new_taxonomies['blog_tag']=$value;
                     } else if ($key=='post_tag') {
                         $new_taxonomies['product_tag']=$value;
+                        $products[]=$value;
                     } else {
                         $new_taxonomies[$key]=$value;
                     }
                 }
 			    $item_records[$itemkey]['taxonomies'] = $new_taxonomies;
+			    $item_records[$itemkey]['products'] = $products;
 
                 $new_taxonomies_hierarchical=array();
                 foreach($item_record['taxonomies_hierarchical'] as $key=>$value) {
@@ -436,7 +439,7 @@ abstract class Algolia_Index {
 
                 $t=get_site_url();
 
-                $item_records[$itemkey]['permalink']=str_replace(get_site_url(),'',$item_records[$itemkey]['permalink']);
+                $item_records[$itemkey]['permalink']='/blog/'.str_replace(get_site_url(),'',$item_records[$itemkey]['permalink']);
 
                 foreach($item_records[$itemkey]['images'] as $imageNum=>$imageUrl) {
                     $item_records[$itemkey]['images'][$imageNum]=(str_replace(get_site_url(),'',$item_records[$itemkey]['images'][$imageNum]));
