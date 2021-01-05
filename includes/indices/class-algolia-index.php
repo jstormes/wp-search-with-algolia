@@ -439,7 +439,7 @@ abstract class Algolia_Index {
 
                 $t=get_site_url();
 
-                $item_records[$itemkey]['permalink']='/blog/'.str_replace(get_site_url(),'',$item_records[$itemkey]['permalink']);
+                $item_records[$itemkey]['permalink']='/blog'.str_replace(get_site_url(),'',$item_records[$itemkey]['permalink']);
 
                 foreach($item_records[$itemkey]['images'] as $imageNum=>$imageUrl) {
                     $item_records[$itemkey]['images'][$imageNum]=(str_replace(get_site_url(),'',$item_records[$itemkey]['images'][$imageNum]));
