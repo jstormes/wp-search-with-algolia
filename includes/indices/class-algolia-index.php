@@ -420,7 +420,9 @@ abstract class Algolia_Index {
                     }
                 }
 			    $item_records[$itemkey]['taxonomies'] = $new_taxonomies;
-			    $item_records[$itemkey]['products'] = $products;
+			    if (isset($products[0])) {
+                    $item_records[$itemkey]['products'] = $products[0];
+                }
 
                 $new_taxonomies_hierarchical=array();
                 foreach($item_record['taxonomies_hierarchical'] as $key=>$value) {
